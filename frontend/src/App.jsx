@@ -1,0 +1,47 @@
+import React, { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { CartProvider } from './context/CartContext'
+import Navbar from './components/Navbar/Navbar'
+import Footer from './components/Footer/Footer'
+import Home from './pages/Home/Home'
+import PlaceOrder from './pages/PlaceOrder/PlaceOrder'
+import HowItWorks from './pages/Howitworks/Howitworks'
+import AboutUs from './pages/Aboutus/Aboutus'
+import RequestProject from './pages/RequestProject/RequestProject'
+import HardwareProject from './pages/HardwareProjects/HardwareProjects'
+import ProjectDetail from './pages/HardwareProjects/ProjectDetail/ProjectDetail'
+import Cart from './pages/Cart/Cart'
+import SoftwareProject from './pages/SoftwareProject/SoftwareProjects'
+import SoftwareProjectDetail from './pages/SoftwareProject/SoftwareProjectDetail/SoftwareProjectDetail'
+import ProjectType from './components/ProjectType/ProjectType'
+import Projects from './Projects' // Import your new Projects component
+
+const App = () => {
+  const [showLogin, setShowLogin] = useState(false)
+        
+  return (
+    <CartProvider>
+      <Navbar />
+      <div className='app'>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/how-it-works' element={<HowItWorks/>} />
+          <Route path='/about' element={<AboutUs/>} />
+          <Route path='/order' element={<PlaceOrder/>} />
+          <Route path='/Requestpro' element={<RequestProject/>} />
+          <Route path='/request-project' element={<RequestProject/>} />
+          <Route path='/Project-Type' element={<ProjectType/>} />
+          <Route path='/projects' element={<Projects/>} /> {/* New route for all projects */}
+          <Route path='/hardware-projects' element={<HardwareProject/>} />
+          <Route path="/hardware-project/:id" element={<ProjectDetail/>} />
+          <Route path='/software-projects' element={<SoftwareProject/>} />
+          <Route path='/SoftwareProjectDetail/:id' element={<SoftwareProjectDetail/>} />
+          <Route path="/cart" element={<Cart/>} />
+        </Routes>
+      </div>
+      <Footer />
+    </CartProvider>
+  )
+}
+
+export default App

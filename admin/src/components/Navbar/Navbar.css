@@ -1,0 +1,19 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1c2635; /* match your navbar */
+  padding: 10px 20px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
