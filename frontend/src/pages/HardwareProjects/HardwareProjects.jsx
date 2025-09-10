@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './HardwareProjects.css';
 
 // Import images from assets folder
-import smartIVFluidImg from '../../../assets/smart_iv_fluid.jpg';
+import smartIVFluidImg from '../../assets/smart_iv_fluid.jpg';
 import medicineReminderImg from '../../assets/Medicine Reminder System.jpg';
 import predictiveMaintenanceImg from '../../assets/AI-Powered Predictive Maintenance.jpeg';
 import fallDetectionImg from '../../assets/Vision-Based Fall Detection.webp';
