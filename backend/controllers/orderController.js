@@ -1,23 +1,25 @@
 import orderModel from "../models/orderModel.js";
-import userModel from '../models/userModel.js'
-import Stripe from "stripe"
+import userModel from '../models/userModel.js';
+// import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const placeOrder = async (req,res) => {
+const placeOrder = async (req, res) => {
     const frontend_url = "http://localhost:5173";
 
     try {
         const newOrder = new orderModel({
-            userId: req.body.userId, // Fixed typo
+            userId: req.body.userId,
             items: req.body.items,
             amount: req.body.amount,
             address: req.body.address
-        })
+        });
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId, {cartData:{}}); // Fixed syntax
+        await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
-        const line_items = req.body.items.map((item) => ({ // Fixed variable name
+        // Commented out Stripe logic for now
+        /*
+        const line_items = req.body.items.map((item) => ({
             price_data: {
                 currency: "inr",
                 product_data: {
@@ -26,7 +28,7 @@ const placeOrder = async (req,res) => {
                 unit_amount: item.price * 100 * 80
             },
             quantity: item.quantity
-        }))
+        }));
 
         line_items.push({
             price_data: {
@@ -37,21 +39,25 @@ const placeOrder = async (req,res) => {
                 unit_amount: 160
             },
             quantity: 1
-        })
+        });
 
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
             mode: 'payment',
             success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
             cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
-        })
+        });
 
-        res.json({success: true, session_url: session.url})
+        return res.json({ success: true, session_url: session.url });
+        */
+
+        // Temporarily return order success without Stripe session
+        return res.json({ success: true, message: "Order placed successfully (payment skipped)", orderId: newOrder._id });
 
     } catch (error) {
         console.log(error);
-        res.json({success: false, message: "Error"})
+        return res.json({ success: false, message: "Error placing order" });
     }
-}
+};
 
-export {placeOrder}
+export { placeOrder };
