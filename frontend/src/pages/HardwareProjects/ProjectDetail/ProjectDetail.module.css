@@ -170,6 +170,7 @@
 
 .projectImage {
   position: relative;
+  padding-bottom: 12px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -219,7 +220,6 @@
   color: #63b3ed;
   margin-bottom: 20px;
   position: relative;
-  padding-bottom: 12px;
 }
 
 .mainContent h2::after {
@@ -237,6 +237,14 @@
   font-size: 1.125rem;
   line-height: 1.7;
   color: #a0aec0;
+}
+
+.projectOverview {
+  margin-bottom: 40px;
+}
+
+.projectFeatures {
+  margin-bottom: 40px;
 }
 
 .featuresList {
@@ -273,7 +281,7 @@
 }
 
 .specificationsCard,
-.purchaseCard {
+.contactCard {
   background: #2d3748;
   padding: 32px;
   border-radius: 16px;
@@ -281,7 +289,7 @@
 }
 
 .specificationsCard h3,
-.purchaseCard h3 {
+.contactCard h3 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #e2e8f0;
@@ -342,50 +350,257 @@
   font-weight: 500;
 }
 
-.purchaseBtn {
-  width: 100%;
-  padding: 16px;
-  background: #48bb78;
-  color: white;
-  border: none;
-  border-radius: 12px;
+/* Contact Section Styles */
+.contactSection {
+  margin-top: 20px;
+}
+
+.contactTitle {
+  font-size: 1.25rem;
   font-weight: 700;
-  font-size: 1.125rem;
+  color: #e2e8f0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.whatsappBtn,
+.emailBtn,
+.contactFormBtn {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  margin-bottom: 16px;
-  transition: all 0.2s ease;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.purchaseBtn:hover {
+.whatsappBtn {
+  background: #25d366;
+  color: white;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsappBtn:hover {
+  background: #1da851;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
-  background: #38a169;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
-.purchaseBtn svg {
+.emailBtn {
+  background: #4299e1;
+  color: white;
+  box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+}
+
+.emailBtn:hover {
+  background: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+}
+
+.contactFormBtn {
+  background: #805ad5;
+  color: white;
+  box-shadow: 0 4px 15px rgba(128, 90, 213, 0.3);
+}
+
+.contactFormBtn:hover {
+  background: #6b46c1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(128, 90, 213, 0.4);
+}
+
+.whatsappBtn svg,
+.emailBtn svg,
+.contactFormBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contactInfo {
+  margin-top: 24px;
+  padding: 20px;
+  background: #4a5568;
+  border-radius: 12px;
+  border: 1px solid #2d3748;
+}
+
+.contactDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.contactLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #63b3ed;
+}
+
+.contactValue {
+  font-size: 0.9375rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.supportNote {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #2d3748;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #48bb78;
+  font-weight: 500;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modalContent {
+  background: #2d3748;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px 0;
+  margin-bottom: 24px;
+}
+
+.modalHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.modalClose:hover {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+.modalClose svg {
   width: 20px;
   height: 20px;
 }
 
-.contactBtn {
+.contactForm {
+  padding: 0 32px 32px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+}
+
+.formGroup input,
+.formGroup textarea {
   width: 100%;
-  padding: 12px;
-  background: transparent;
-  color: #63b3ed;
-  border: 2px solid #63b3ed;
+  padding: 12px 16px;
+  background: #4a5568;
+  border: 2px solid #4a5568;
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #63b3ed;
+  background: #2d3748;
+}
+
+.formGroup input[readonly] {
+  background: #2d3748;
+  color: #a0aec0;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.formActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cancelBtn,
+.submitBtn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.contactBtn:hover {
-  background: #63b3ed;
-  color: #1a202c;
+.cancelBtn {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+.cancelBtn:hover {
+  background: #2d3748;
+}
+
+.submitBtn {
+  background: #48bb78;
+  color: white;
+}
+
+.submitBtn:hover {
+  background: #38a169;
+  transform: translateY(-1px);
 }
 
 .errorContainer {
@@ -401,55 +616,6 @@
   font-size: 2rem;
   color: #e2e8f0;
   margin-bottom: 20px;
-}
-
-/* Cart Actions */
-.cartActions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.inCartBtn {
-  background-color: #48bb78 !important;
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
-.inCartBtn:hover {
-  background-color: #48bb78 !important;
-  transform: none;
-}
-
-.viewCartBtn {
-  padding: 0.75rem 1.5rem;
-  background-color: transparent;
-  color: #63b3ed;
-  border: 2px solid #63b3ed;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-
-.viewCartBtn:hover {
-  background-color: #63b3ed;
-  color: #1a202c;
-  transform: translateY(-2px);
-}
-
-.purchaseBtn:disabled {
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-
-.purchaseBtn:disabled:hover {
-  transform: none;
 }
 
 /* Responsive Design */
@@ -496,7 +662,47 @@
   }
   
   .specificationsCard,
-  .purchaseCard {
+  .contactCard {
     padding: 24px;
+  }
+  
+  .modalContent {
+    margin: 10px;
+    max-width: none;
+  }
+  
+  .modalHeader {
+    padding: 20px 24px 0;
+  }
+  
+  .contactForm {
+    padding: 0 24px 24px;
+  }
+  
+  .formActions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .priceTag {
+    font-size: 1.125rem;
+  }
+  
+  .contactInfo {
+    padding: 16px;
+  }
+  
+  .whatsappBtn,
+  .emailBtn,
+  .contactFormBtn {
+    padding: 12px;
+    font-size: 0.9375rem;
   }
 }

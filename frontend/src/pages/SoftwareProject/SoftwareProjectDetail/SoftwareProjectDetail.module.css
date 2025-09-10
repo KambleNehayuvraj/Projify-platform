@@ -396,21 +396,278 @@
   color: white;
 }
 
-.contactBtn {
-  width: 100%;
-  padding: 0.75rem;
-  background: transparent;
-  border: 1px solid rgba(148, 163, 184, 0.3);
-  border-radius: 8px;
-  color: #cbd5e1;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Contact Section Styles */
+.contactSection {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
 
-.contactBtn:hover {
+.contactTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-align: center;
+}
+
+.whatsappBtn,
+.emailBtn,
+.contactFormBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  text-decoration: none;
+}
+
+.whatsappBtn {
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsappBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.emailBtn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.emailBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.contactFormBtn {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.contactFormBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+}
+
+.whatsappBtn svg,
+.emailBtn svg,
+.contactFormBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contactInfo {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(30, 41, 59, 0.4);
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.contactDetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.contactDetail:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+}
+
+.contactLabel {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.contactValue {
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  font-weight: 500;
+  text-align: right;
+  word-break: break-all;
+}
+
+.supportNote {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  padding: 0.875rem;
+  font-size: 0.875rem;
+  color: #10b981;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 0 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.modalHeader h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.modalClose:hover {
   background: rgba(148, 163, 184, 0.1);
   color: white;
+}
+
+.modalClose svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.contactForm {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+  background: rgba(30, 41, 59, 0.8);
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #94a3b8;
+}
+
+.formGroup input[readonly] {
+  background: rgba(51, 65, 85, 0.5);
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.cancelBtn,
+.submitBtn {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 0.875rem;
+}
+
+.cancelBtn {
+  background: rgba(51, 65, 85, 0.6);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.cancelBtn:hover {
+  background: rgba(148, 163, 184, 0.1);
+  color: white;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.4);
 }
 
 .errorContainer {
@@ -426,6 +683,40 @@
 .errorContainer h2 {
   font-size: 2rem;
   color: #ef4444;
+}
+
+/* Loading animation for purchase button */
+.purchaseBtn.loading {
+  position: relative;
+  color: transparent;
+}
+
+.purchaseBtn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.purchaseBtn:disabled:not(.loading) {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.purchaseBtn:disabled:not(.loading)::after {
+  display: none;
 }
 
 /* Responsive Design */
@@ -506,6 +797,27 @@
   .price {
     font-size: 2rem;
   }
+
+  .modalContent {
+    margin: 0.5rem;
+  }
+
+  .modalHeader {
+    padding: 1.5rem 1.5rem 0 1.5rem;
+  }
+
+  .contactForm {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+
+  .cancelBtn,
+  .submitBtn {
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -560,6 +872,20 @@
   .sidebar > *:last-child {
     margin-bottom: 0;
   }
+
+  .contactInfo {
+    padding: 1rem;
+  }
+
+  .contactDetail {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .contactValue {
+    text-align: left;
+  }
 }
 
 /* Animation keyframes */
@@ -583,62 +909,11 @@
 .btn:focus,
 .purchaseBtn:focus,
 .viewCartBtn:focus,
-.contactBtn:focus {
+.whatsappBtn:focus,
+.emailBtn:focus,
+.contactFormBtn:focus,
+.submitBtn:focus,
+.cancelBtn:focus {
   outline: 2px solid #60a5fa;
   outline-offset: 2px;
-}
-
-/* Loading animation for purchase button */
-.purchaseBtn:disabled {
-  position: relative;
-  color: transparent;
-}
-
-.purchaseBtn:disabled::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid transparent;
-  border-top: 2px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-/* Add this to your CSS file - Loading state specifically for the adding process */
-.purchaseBtn.loading {
-  position: relative;
-  color: transparent;
-}
-
-.purchaseBtn.loading::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid transparent;
-  border-top: 2px solid white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-/* Update the existing disabled styles to not show spinner */
-.purchaseBtn:disabled:not(.loading) {
-  opacity: 0.7;
-  cursor: not-allowed;
-  /* Remove the spinner styles from here */
-}
-
-.purchaseBtn:disabled:not(.loading)::after {
-  display: none;
 }

@@ -29,7 +29,7 @@ const SoftwareProject = () => {
       id: 1,
       title: 'E-Commerce Platform',
       difficulty: 'ADVANCED',
-      price: '₹6000',
+      price: '₹12k',
       description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB integration.',
       image: ecommerceImg,
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux']
@@ -38,7 +38,7 @@ const SoftwareProject = () => {
       id: 2,
       title: 'Task Management App',
       difficulty: 'INTERMEDIATE',
-      price: '₹4000',
+      price: '₹7000',
       description: 'Collaborative task management application with real-time updates and team features.',
       image: taskManagementImg,
       tags: ['Vue.js', 'Firebase', 'Real-time', 'PWA']
@@ -47,7 +47,7 @@ const SoftwareProject = () => {
       id: 3,
       title: 'AI Chat Bot',
       difficulty: 'ADVANCED',
-      price: '₹7000',
+      price: '₹15k',
       description: 'Intelligent chatbot with natural language processing and machine learning capabilities.',
       image: aiChatbotImg,
       tags: ['Python', 'TensorFlow', 'NLP', 'Flask', 'API']
@@ -56,7 +56,7 @@ const SoftwareProject = () => {
       id: 4,
       title: 'Weather Dashboard',
       difficulty: 'BEGINNER',
-      price: '₹2500',
+      price: '₹3,500',
       description: 'Interactive weather dashboard with location-based forecasts and data visualization.',
       image: weatherDashboardImg,
       tags: ['JavaScript', 'API Integration', 'Charts', 'CSS3']
@@ -65,7 +65,7 @@ const SoftwareProject = () => {
       id: 5,
       title: 'Social Media Analytics',
       difficulty: 'ADVANCED',
-      price: '₹8000',
+      price: '₹10k',
       description: 'Analytics platform for social media metrics with data visualization and reporting.',
       image: socialMediaAnalyticsImg,
       tags: ['Python', 'Django', 'Data Analysis', 'Charts', 'PostgreSQL']
@@ -74,7 +74,7 @@ const SoftwareProject = () => {
       id: 6,
       title: 'Mobile Fitness Tracker',
       difficulty: 'INTERMEDIATE',
-      price: '₹5000',
+      price: '₹8000',
       description: 'Cross-platform mobile app for fitness tracking with workout plans and progress monitoring.',
       image: fitnessTrackerImg,
       tags: ['React Native', 'SQLite', 'Health API', 'Charts']

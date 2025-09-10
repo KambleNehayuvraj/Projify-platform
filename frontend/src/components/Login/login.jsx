@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import './login.css';
-import { CartContext } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext'; // Changed from CartContext import
 
 const Login = ({ isOpen, onClose, setShowLogin }) => {
-  const { url, setToken } = useContext(CartContext);
+  const { url, login } = useCart(); // Use login instead of setToken
   
   const [formData, setFormData] = useState({
     name: '', // Add name field for registration
@@ -141,53 +141,35 @@ const Login = ({ isOpen, onClose, setShowLogin }) => {
       console.log('  - Message field:', data.message);
       console.log('  - Token field:', data.token);
       
-      // FIXED: Check for success field first, not HTTP status
+      // UPDATED: Use CartContext's login method for proper token handling
       if (data.success === true && data.token) {
         console.log('🎉 Authentication successful!');
         console.log('🔑 Token received:', data.token);
         
-        // Set token in context (which should also set it in localStorage)
-        setToken(data.token);
+        // Prepare user data for storage
+        const userData = data.user || data.userData || {
+          email: formData.email,
+          name: formData.name || null
+        };
         
-        // Store authentication token
-        localStorage.setItem('authToken', data.token);
+        // Use CartContext's login method which handles token storage and persistence
+        login(data.token, userData);
         
-        // Store user data if available in response
-        if (data.user) {
-          localStorage.setItem('userData', JSON.stringify(data.user));
-        } else if (data.userData) {
-          localStorage.setItem('userData', JSON.stringify(data.userData));
-        } else {
-          // Store basic user info from form data if no user data in response
-          const basicUserData = {
-            email: formData.email,
-            name: formData.name || null
-          };
-          localStorage.setItem('userData', JSON.stringify(basicUserData));
-        }
+        console.log('✅ Token and user data stored via CartContext');
         
-        // Verify token was set
-        setTimeout(() => {
-          const storedToken = localStorage.getItem('token');
-          const storedAuthToken = localStorage.getItem('authToken');
-          const storedUserData = localStorage.getItem('userData');
-          
-          console.log('💾 Token verification:');
-          console.log('  - Stored in localStorage (token):', storedToken ? 'YES' : 'NO');
-          console.log('  - Stored in localStorage (authToken):', storedAuthToken ? 'YES' : 'NO');
-          console.log('  - Stored user data:', storedUserData ? 'YES' : 'NO');
-          console.log('  - Stored token:', storedToken);
-          console.log('  - Auth token matches received token:', storedAuthToken === data.token);
-        }, 100);
-        
-        // FIXED: Use onClose instead of setShowLogin to close modal
+        // Close the modal - use both methods for reliability
         if (typeof setShowLogin === 'function') {
           setShowLogin(false);
-        } else {
-          onClose(); // Fallback to onClose if setShowLogin is not available
         }
+        if (typeof onClose === 'function') {
+          onClose();
+        }
+        
+        // Show success message and clear form
         alert(isLogin ? 'Login successful!' : 'Account created successfully!');
         setFormData({ name: '', email: '', password: '' });
+        
+        console.log('✅ Login process completed successfully');
         
       } else {
         // Handle error response - backend returned success: false
@@ -280,7 +262,6 @@ const Login = ({ isOpen, onClose, setShowLogin }) => {
           <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
           <p>{isLogin ? 'Sign in to your account' : 'Join us today'}</p>
         </div>
-
 
         <form className="login-form" onSubmit={handleSubmit}>
           {errors.general && (

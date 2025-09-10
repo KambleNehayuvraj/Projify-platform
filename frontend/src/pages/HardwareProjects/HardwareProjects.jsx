@@ -3,12 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import './HardwareProjects.css';
 
 // Import images from assets folder
-import arduinoWeatherImg from '../../assets/Arduino Weather Station.webp';
-import smartHomeImg from '../../assets/smart home automation hub Ui.webp';
-import digitalOscilloscopeImg from '../../assets/digital oscilloscope display.jpg';
-import roboticArmImg from '../../assets/robotic arm controller.webp';
-import ledMatrixImg from '../../assets/LED matrix display.webp';
-import droneControllerImg from '../../assets/drone flight controller board.jpg';
+import smartIVFluidImg from '../../assets/Smart IV Fluid Monitoring and Alert System.jpg';
+import medicineReminderImg from '../../assets/Medicine Reminder System.jpg';
+import predictiveMaintenanceImg from '../../assets/AI-Powered Predictive Maintenance.jpeg';
+import fallDetectionImg from '../../assets/Vision-Based Fall Detection.webp';
+import smartDoorbellImg from '../../assets/Smart Doorbell with Facial Recognition.avif';
+import airPurifierImg from '../../assets/Embedded Air Purifier Controller.webp';
+import deliveryRobotImg from '../../assets/Autonomous Delivery Robot.webp';
+import windowCleanerImg from '../../assets/Robotic Window Cleaner.jpg';
+import smartParkingImg from '../../assets/Smart Parking Space Detection.webp';
+import smartBicycleLockImg from '../../assets/Embedded System for Smart Bicycle Lock.jpg';
+
+// Personal Wellness
+import fitnessTrackerImg from '../../assets/Personalized Fitness Goal Tracker.png';
+import stressHeadsetImg from '../../assets/Stress-Reducing Headset.png';
 
 const HardwareProjects = () => {
   const navigate = useNavigate();
@@ -18,75 +26,135 @@ const HardwareProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "Arduino Weather Station",
-      description: "IoT-enabled weather monitoring system with real-time data visualization and cloud connectivity.",
+      title: "Smart IV Fluid Monitoring and Alert System",
+      description: "System to monitor IV fluid levels, send alerts, and prevent backflow/air embolism through real-time IoT-enabled monitoring.",
       category: "iot",
       difficulty: "Intermediate",
-      image: arduinoWeatherImg,
-      tags: ["Arduino", "IoT", "Sensors", "Cloud"],
-      github: "#",
-      demo: "#",
-      price: "₹6000"
+      image: smartIVFluidImg,
+      tags: ["IoT", "Healthcare", "Arduino", "Sensors", "Automation"],
+      price: "₹8K + Components",
+      demo: "#"
     },
     {
       id: 2,
-      title: "Smart Home Automation Hub",
-      description: "Centralized control system for home appliances using Raspberry Pi and custom PCB design.",
-      category: "embedded",
-      difficulty: "Advanced",
-      image: smartHomeImg,
-      tags: ["Raspberry Pi", "PCB", "Home Automation", "WiFi"],
-      github: "#",
-      demo: "#",
-      price: "₹5000"
+      title: "IoT-Based Medicine Reminder System for Chronic Patients",
+      description: "IoT-enabled device to remind patients to take medicines on time, track adherence, and sync data with mobile apps.",
+      category: "iot",
+      difficulty: "Beginner",
+      image: medicineReminderImg,
+      tags: ["IoT", "NodeMCU", "RFID", "Blynk", "Cloud"],
+      price: "₹8K + Components",
+      demo: "#"
     },
     {
       id: 3,
-      title: "Digital Oscilloscope",
-      description: "Custom-built oscilloscope with FPGA-based signal processing and touchscreen interface.",
-      category: "circuits",
-      difficulty: "Expert",
-      image: digitalOscilloscopeImg,
-      tags: ["FPGA", "Signal Processing", "Electronics", "Display"],
-      github: "#",
-      demo: "#",
-      price: "₹5000"
+      title: "AI-Powered Predictive Maintenance for Industrial Equipment",
+      description: "AI-driven predictive maintenance using sensor data and machine learning to reduce unplanned downtime.",
+      category: "ai",
+      difficulty: "Advanced",
+      image: predictiveMaintenanceImg,
+      tags: ["AI", "Machine Learning", "IoT", "Python", "TensorFlow", "Dashboard"],
+      price: "₹8K + Components",
+      demo: "#"
     },
     {
       id: 4,
-      title: "Robotic Arm Controller",
-      description: "6-DOF robotic arm with precise servo control and computer vision integration.",
-      category: "robotics",
+      title: "Vision-Based Fall Detection for Elderly Home Safety",
+      description: "Deep learning-based fall detection system using camera feeds, real-time alerts to caregivers, and cloud integration.",
+      category: "ai",
       difficulty: "Advanced",
-      image: roboticArmImg,
-      tags: ["Robotics", "Computer Vision", "Servo Motors", "AI"],
-      github: "#",
-      demo: "#",
-      price: "₹5000"
+      image: fallDetectionImg,
+      tags: ["AI", "Deep Learning", "YOLOv8", "OpenCV", "AWS IoT"],
+      price: "₹8K + Components",
+      demo: "#"
     },
     {
       id: 5,
-      title: "LED Matrix Display",
-      description: "Programmable RGB LED matrix with music visualization and custom animations.",
-      category: "circuits",
-      difficulty: "Beginner",
-      image: ledMatrixImg,
-      tags: ["LED", "Arduino", "Animations", "Music"],
-      github: "#",
-      demo: "#",
-      price: "₹5000"
+      title: "Smart Doorbell with Facial Recognition",
+      description: "Raspberry Pi-based facial recognition doorbell that identifies visitors and alerts homeowners in real time.",
+      category: "embedded",
+      difficulty: "Intermediate",
+      image: smartDoorbellImg,
+      tags: ["Raspberry Pi", "OpenCV", "Facial Recognition", "IoT", "Firebase"],
+      price: "₹8K + Components",
+      demo: "#"
     },
     {
       id: 6,
-      title: "Drone Flight Controller",
-      description: "Custom flight controller board with IMU sensors and wireless telemetry system.",
+      title: "Embedded Air Purifier Controller for Allergy Sufferers",
+      description: "Embedded system to monitor indoor air quality and control purification using smart sensors and automation.",
       category: "embedded",
-      difficulty: "Expert",
-      image: droneControllerImg,
-      tags: ["Drone", "IMU", "Flight Control", "Telemetry"],
-      github: "#",
-      demo: "#",
-      price: "₹5000"
+      difficulty: "Intermediate",
+      image: airPurifierImg,
+      tags: ["STM32", "PM2.5 Sensor", "IoT", "PID Control", "Wi-Fi"],
+      price: "₹8K + Components",
+      demo: "#"
+    },
+    {
+      id: 7,
+      title: "Autonomous Delivery Robot for Last-Mile Food Delivery",
+      description: "Robot for short-range autonomous food delivery using GPS navigation, obstacle avoidance, and IoT connectivity.",
+      category: "robotics",
+      difficulty: "Advanced",
+      image: deliveryRobotImg,
+      tags: ["Robotics", "ROS", "GPS", "IoT", "Raspberry Pi"],
+      price: "₹8K + Components",
+      demo: "#"
+    },
+    {
+      id: 8,
+      title: "Robotic Window Cleaner for High-Rise Buildings",
+      description: "Autonomous robotic cleaner with suction and navigation sensors for safe and efficient high-rise window cleaning.",
+      category: "robotics",
+      difficulty: "Intermediate",
+      image: windowCleanerImg,
+      tags: ["Arduino", "Sensors", "Robotics", "Automation"],
+      price: "₹8K + Components",
+      demo: "#"
+    },
+    {
+      id: 9,
+      title: "Smart Parking Space Detection Using Deep Learning",
+      description: "Vision-based system using CCTV and deep learning to detect available parking spots in real time.",
+      category: "iot",
+      difficulty: "Advanced",
+      image: smartParkingImg,
+      tags: ["YOLOv8", "Deep Learning", "OpenCV", "AWS", "IoT"],
+      price: "₹8K + Components",
+      demo: "#"
+    },
+    {
+      id: 10,
+      title: "Embedded System for Smart Bicycle Lock",
+      description: "IoT-enabled smart lock with GPS tracking, BLE connectivity, and theft-prevention alerts for bicycles.",
+      category: "iot",
+      difficulty: "Intermediate",
+      image: smartBicycleLockImg,
+      tags: ["ESP32", "GPS", "BLE", "MQTT", "IoT"],
+      price: "₹8K + Components",
+      demo: "#"
+    },
+    {
+      id: 11,
+      title: "Personalized Fitness Goal Tracker Using Data Analytics",
+      description: "Data-driven fitness tracker that integrates with wearables to provide personalized workout and nutrition plans.",
+      category: "ai",
+      difficulty: "Intermediate",
+      image: fitnessTrackerImg,
+      tags: ["Data Analytics", "R", "Power BI", "Wearables", "APIs"],
+      price: "₹8K + Components",
+      demo: "#"
+    },
+    {
+      id: 12,
+      title: "Stress-Reducing Headset Using Brainwave Entrainment",
+      description: "Wearable headset that uses brainwave entrainment and sound therapy to reduce stress levels in real time.",
+      category: "embedded",
+      difficulty: "Advanced",
+      image: stressHeadsetImg,
+      tags: ["Wearable Tech", "Audio Processing", "IoT", "Microcontrollers"],
+      price: "₹8K + Components",
+      demo: "#"
     }
   ];
 
@@ -99,7 +167,8 @@ const HardwareProjects = () => {
     { key: 'iot', label: 'IoT Solutions' },
     { key: 'embedded', label: 'Embedded Systems' },
     { key: 'circuits', label: 'Circuit Design' },
-    { key: 'robotics', label: 'Robotics' }
+    { key: 'robotics', label: 'Robotics' },
+    { key: 'ai', label: 'AI & Data Analytics' }
   ];
 
   const filteredProjects = projects.filter(project => {
@@ -134,7 +203,7 @@ const HardwareProjects = () => {
               <span className="stat-label">Quality</span>
             </div>
             <div className="stat">
-              <span className="stat-number">4</span>
+              <span className="stat-number">5</span>
               <span className="stat-label">Categories</span>
             </div>
             <div className="stat">

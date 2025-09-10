@@ -415,7 +415,7 @@
 
 /* Debug styles - remove after fixing */
 .project-card__btn {
-  border: 2px solid red !important; /* Temporary - to see button boundaries */
+  border: 2px solid rgba(12, 6, 36, 0.132) !important; /* Temporary - to see button boundaries */
 }
 
 /* Make sure no parent container is preventing clicks */

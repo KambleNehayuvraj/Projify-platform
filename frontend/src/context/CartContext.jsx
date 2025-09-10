@@ -18,7 +18,8 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:4000";
+  const [isAuthChecking, setIsAuthChecking] = useState(true); // New state for auth checking
+  const url = import.meta.env.VITE_API_URL;
   const [project_list, setProjectList] = useState([]);
 
   const fetchProjectList = async () => {
@@ -30,28 +31,76 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // Load token from localStorage on component mount
+  // Validate token with server
+  const validateToken = async (tokenToValidate) => {
+    if (!tokenToValidate) return false;
+    
+    try {
+      console.log('🔍 Validating token with server...');
+      const response = await axios.get(`${url}/api/user/verify`, {
+        headers: {
+          'token': tokenToValidate,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (response.data.success) {
+        console.log('✅ Token is valid');
+        return true;
+      } else {
+        console.log('❌ Token validation failed:', response.data.message);
+        return false;
+      }
+    } catch (error) {
+      console.error('❌ Token validation error:', error.response?.data || error.message);
+      return false;
+    }
+  };
+
+  // Initialize authentication on app load
   useEffect(() => {
-    async function loadData() {
+    async function initializeAuth() {
+      setIsAuthChecking(true);
       await fetchProjectList();
+      
       try {
-        // Check both 'token' and 'authToken' for compatibility
+        // Check for existing token
         const savedToken = localStorage.getItem('token') || localStorage.getItem('authToken');
+        
         if (savedToken) {
-          console.log('🔑 Token found in localStorage:', savedToken.substring(0, 10) + '...');
-          setToken(savedToken);
+          console.log('🔑 Found saved token, validating...');
+          
+          // Validate the token with server
+          const isValid = await validateToken(savedToken);
+          
+          if (isValid) {
+            setToken(savedToken);
+            console.log('✅ Token validated, user remains logged in');
+          } else {
+            // Token is invalid, clear it
+            localStorage.removeItem('token');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userData');
+            localStorage.removeItem('progify-cart');
+            console.log('❌ Invalid token removed, user logged out');
+          }
         } else {
-          console.log('❌ No token found in localStorage');
+          console.log('📭 No saved token found');
         }
       } catch (error) {
-        console.error('Error loading token from localStorage:', error);
+        console.error('Error initializing auth:', error);
+      } finally {
+        setIsAuthChecking(false);
       }
     }
-    loadData();
+    
+    initializeAuth();
   }, []);
 
-  // Load cart from server when token is available
+  // Load cart when token changes (only after auth check is complete)
   useEffect(() => {
+    if (isAuthChecking) return; // Don't load cart while checking auth
+    
     if (token) {
       console.log('🔄 Token available, loading cart from server...');
       loadCartFromServer();
@@ -59,31 +108,18 @@ export const CartProvider = ({ children }) => {
       console.log('📱 No token, loading cart from localStorage...');
       loadCartFromLocalStorage();
     }
-  }, [token]);
+  }, [token, isAuthChecking]);
 
   // Save cart to localStorage whenever cartItems change (backup)
   useEffect(() => {
+    if (isAuthChecking) return; // Don't save while checking auth
+    
     try {
       localStorage.setItem('progify-cart', JSON.stringify(cartItems));
     } catch (error) {
       console.error('Error saving cart to localStorage:', error);
     }
-  }, [cartItems]);
-
-  // Save token to localStorage whenever token changes
-  useEffect(() => {
-    try {
-      if (token) {
-        localStorage.setItem('token', token);
-        localStorage.setItem('authToken', token);
-      } else {
-        localStorage.removeItem('token');
-        localStorage.removeItem('authToken');
-      }
-    } catch (error) {
-      console.error('Error saving token to localStorage:', error);
-    }
-  }, [token]);
+  }, [cartItems, isAuthChecking]);
 
   // Load cart from localStorage (fallback)
   const loadCartFromLocalStorage = () => {
@@ -124,14 +160,55 @@ export const CartProvider = ({ children }) => {
         console.log('✅ Cart loaded from server:', response.data.cartItems?.length || 0, 'items');
       } else {
         console.error('❌ Failed to load cart from server:', response.data.message);
-        loadCartFromLocalStorage(); // Fallback to localStorage
+        // If cart load fails due to auth, logout user
+        if (response.status === 401 || response.data.message?.includes('token')) {
+          handleTokenExpired();
+        } else {
+          loadCartFromLocalStorage(); // Fallback to localStorage
+        }
       }
     } catch (error) {
       console.error('❌ Error loading cart from server:', error.response?.data || error.message);
-      loadCartFromLocalStorage(); // Fallback to localStorage
+      
+      // Check if it's an auth error
+      if (error.response?.status === 401) {
+        handleTokenExpired();
+      } else {
+        loadCartFromLocalStorage(); // Fallback to localStorage
+      }
     } finally {
       setIsLoading(false);
     }
+  };
+
+  // Handle token expiration
+  const handleTokenExpired = () => {
+    console.log('🚪 Token expired, logging out user');
+    setToken('');
+    setCartItems([]);
+    localStorage.removeItem('token');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('progify-cart');
+    localStorage.removeItem('userData');
+    // Optionally show a message to user about session expiration
+  };
+
+  // Login function - properly set token and persist it
+  const login = (newToken, userData = null) => {
+    console.log('🚪 Logging in user with new token');
+    
+    // Set token in state
+    setToken(newToken);
+    
+    // Persist token and user data
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('authToken', newToken);
+    
+    if (userData) {
+      localStorage.setItem('userData', JSON.stringify(userData));
+    }
+    
+    console.log('✅ User logged in successfully');
   };
 
   // Add item to cart - MAIN FUNCTION FOR API INTEGRATION
@@ -155,8 +232,8 @@ export const CartProvider = ({ children }) => {
         const response = await axios.post(
           `${url}/api/cart/add`,
           { 
-            itemId: item.id || item._id, // Handle both id and _id
-            projectData: item // Send full item data
+            itemId: item.id || item._id,
+            projectData: item
           },
           { 
             headers: { 
@@ -169,7 +246,6 @@ export const CartProvider = ({ children }) => {
         console.log('📥 Server response:', response.data);
 
         if (response.data.success) {
-          // Update local state with server response
           setCartItems(response.data.cartItems || []);
           console.log('✅ Item added to server cart successfully!');
           return { 
@@ -214,6 +290,16 @@ export const CartProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('❌ Error in addToCart:', error.response?.data || error.message);
+      
+      // Check if it's an auth error
+      if (error.response?.status === 401) {
+        handleTokenExpired();
+        return { 
+          success: false, 
+          message: 'Session expired. Please login again.',
+          source: 'auth_error'
+        };
+      }
       
       // Fallback to local cart on any error
       const updatedItems = (() => {
@@ -275,6 +361,12 @@ export const CartProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('❌ Error removing item:', error);
+      
+      // Check if it's an auth error
+      if (error.response?.status === 401) {
+        handleTokenExpired();
+      }
+      
       // Fallback to local removal
       const updatedItems = cartItems.filter(item => (item.id || item._id) !== itemId);
       setCartItems(updatedItems);
@@ -322,6 +414,12 @@ export const CartProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('❌ Error updating quantity:', error);
+      
+      // Check if it's an auth error
+      if (error.response?.status === 401) {
+        handleTokenExpired();
+      }
+      
       // Fallback to local update
       const updatedItems = cartItems.map(item =>
         (item.id || item._id) === itemId
@@ -359,6 +457,12 @@ export const CartProvider = ({ children }) => {
       }
     } catch (error) {
       console.error('❌ Error clearing cart:', error);
+      
+      // Check if it's an auth error
+      if (error.response?.status === 401) {
+        handleTokenExpired();
+      }
+      
       setCartItems([]);
     }
   };
@@ -384,20 +488,43 @@ export const CartProvider = ({ children }) => {
   };
 
   const logout = () => {
+    console.log('👋 Logging out user...');
     setToken('');
     setCartItems([]);
     localStorage.removeItem('token');
     localStorage.removeItem('authToken');
     localStorage.removeItem('progify-cart');
     localStorage.removeItem('userData');
-    console.log('👋 User logged out, cart cleared');
+    console.log('👋 User logged out, all data cleared');
   };
 
-  const refreshAuthStatus = () => {
+  // Check if user is authenticated
+  const isAuthenticated = () => {
+    return !!token && !isAuthChecking;
+  };
+
+  // Get user data from localStorage
+  const getUserData = () => {
+    try {
+      const userData = localStorage.getItem('userData');
+      return userData ? JSON.parse(userData) : null;
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+      return null;
+    }
+  };
+
+  // Refresh auth status (useful for components that need to check auth)
+  const refreshAuthStatus = async () => {
     const currentToken = localStorage.getItem('token') || localStorage.getItem('authToken');
     if (currentToken && currentToken !== token) {
-      console.log('🔄 Refreshing auth status with new token');
-      setToken(currentToken);
+      console.log('🔄 Refreshing auth status with token validation...');
+      const isValid = await validateToken(currentToken);
+      if (isValid) {
+        setToken(currentToken);
+      } else {
+        handleTokenExpired();
+      }
     }
   };
 
@@ -407,7 +534,9 @@ export const CartProvider = ({ children }) => {
       token: token ? token.substring(0, 10) + '...' : 'No token',
       cartItemsCount: cartItems.length,
       cartItems: cartItems,
-      isLoading
+      isLoading,
+      isAuthChecking,
+      isAuthenticated: isAuthenticated()
     });
   };
 
@@ -427,12 +556,16 @@ export const CartProvider = ({ children }) => {
     url,
     token,
     setToken,
+    login, // New login function
     logout,
     isLoading,
+    isAuthChecking, // New state
     loadCartFromServer,
     project_list,
     refreshAuthStatus,
-    debugCartState // For debugging
+    isAuthenticated, // New helper
+    getUserData, // New helper
+    debugCartState
   };
 
   return (
