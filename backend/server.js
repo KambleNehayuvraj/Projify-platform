@@ -22,11 +22,16 @@ const __dirname = path.dirname(__filename);
 
 // App config
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
+
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["https://projify-platform-2.onrender.com"],
+  credentials: true
+}));
+
 
 // DB connection
 connectDB();
@@ -45,5 +50,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server Started on http://localhost:${port}`);
+    console.log(`✅ Server started on port ${port}`);
 });
+
