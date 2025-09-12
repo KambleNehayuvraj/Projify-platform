@@ -29,7 +29,7 @@ const SoftwareProject = () => {
       id: 1,
       title: 'E-Commerce Platform',
       difficulty: 'ADVANCED',
-      price: '₹12k',
+      price: '₹3999',
       description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB integration.',
       image: ecommerceImg,
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux']
@@ -38,7 +38,7 @@ const SoftwareProject = () => {
       id: 2,
       title: 'Task Management App',
       difficulty: 'INTERMEDIATE',
-      price: '₹7000',
+      price: '₹4999',
       description: 'Collaborative task management application with real-time updates and team features.',
       image: taskManagementImg,
       tags: ['Vue.js', 'Firebase', 'Real-time', 'PWA']
@@ -65,7 +65,7 @@ const SoftwareProject = () => {
       id: 5,
       title: 'Social Media Analytics',
       difficulty: 'ADVANCED',
-      price: '₹10k',
+      price: '₹4999',
       description: 'Analytics platform for social media metrics with data visualization and reporting.',
       image: socialMediaAnalyticsImg,
       tags: ['Python', 'Django', 'Data Analysis', 'Charts', 'PostgreSQL']
@@ -74,7 +74,7 @@ const SoftwareProject = () => {
       id: 6,
       title: 'Mobile Fitness Tracker',
       difficulty: 'INTERMEDIATE',
-      price: '₹8000',
+      price: '₹7999',
       description: 'Cross-platform mobile app for fitness tracking with workout plans and progress monitoring.',
       image: fitnessTrackerImg,
       tags: ['React Native', 'SQLite', 'Health API', 'Charts']
@@ -110,6 +110,10 @@ const SoftwareProject = () => {
     } catch (error) {
       console.error('Navigation error:', error);
     }
+  };
+
+  const handleRequestCustomProject = () => {
+    navigate('/request-project');
   };
 
   const getDifficultyColor = (difficulty) => {
@@ -216,6 +220,58 @@ const SoftwareProject = () => {
           <p>No projects found matching your criteria.</p>
         </div>
       )}
+
+      {/* Request Custom Project Section */}
+      <div className="custom-project-section">
+        <div className="custom-project-content">
+          <div className="custom-project-info">
+            <h2>Need Custom Software?</h2>
+            <p>Can't find the perfect software solution? Let our expert developers build a custom application tailored to your specific business needs.</p>
+            <div className="features-list">
+              <div className="feature-item">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Custom Development</span>
+              </div>
+              <div className="feature-item">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Full Source Code</span>
+              </div>
+              <div className="feature-item">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Modern Technologies</span>
+              </div>
+              <div className="feature-item">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Ongoing Support</span>
+              </div>
+            </div>
+          </div>
+          <div className="custom-project-action">
+            <button 
+              className="request-custom-btn"
+              onClick={handleRequestCustomProject}
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.5 2c-5.621 0-10.211 4.443-10.475 10-3.09.304-5.525 2.856-5.525 5.997 0 3.314 2.686 6.003 6 6.003h9.5c4.144 0 7.5-3.356 7.5-7.5s-3.356-7.5-7.5-7.5c-.871 0-1.706.157-2.48.44-.275-4.026-3.617-7.44-7.52-7.44zm3.5 6h-2v4h-4v2h4v4h2v-4h4v-2h-4v-4z"/>
+              </svg>
+              Request Custom Project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7,7 17,7 17,17"></polyline>
+              </svg>
+            </button>
+            <p className="custom-project-subtitle">Get your personalized software solution</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

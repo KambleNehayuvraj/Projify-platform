@@ -15,7 +15,7 @@ const PopularProjects = () => {
       image: smartIrrigationImg,
       difficulty: "Popular",
       difficultyColor: "green",
-      price: "₹1,999",
+      price: "₹4k+components",
       priceNote: "+ component cost",
       tags: ["Arduino", "IoT", "Sensors"],
       features: [
@@ -32,7 +32,7 @@ const PopularProjects = () => {
       image: aiAttendanceImg,
       difficulty: "Advanced",
       difficultyColor: "purple",
-      price: "₹2,999",
+      price: "₹8000",
       priceNote: "All inclusive",
       tags: ["Python", "OpenCV", "ML"],
       features: [
@@ -49,8 +49,8 @@ const PopularProjects = () => {
       image: lineFollowingRobotImg,
       difficulty: "Beginner",
       difficultyColor: "blue",
-      price: "₹1,499",
-      priceNote: "+ sensors",
+      price: "₹2k+components",
+      priceNote: "",
       tags: ["Arduino", "Robotics", "Electronics"],
       features: [
         { icon: "📄", text: "Abstract" },
@@ -111,9 +111,7 @@ const PopularProjects = () => {
           ))}
         </div>
         
-        <div className="section-footer">
-          <button className="view-all-btn">View All Projects</button>
-        </div>
+        
       </div>
     </section>
   );

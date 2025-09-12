@@ -162,6 +162,10 @@ const HardwareProjects = () => {
     navigate(`/hardware-project/${projectId}`);
   };
 
+  const handleRequestCustomProject = () => {
+    navigate('/request-project');
+  };
+
   const categories = [
     { key: 'all', label: 'All Projects' },
     { key: 'iot', label: 'IoT Solutions' },
@@ -322,6 +326,58 @@ const HardwareProjects = () => {
             <p>Try adjusting your search or filter criteria</p>
           </div>
         )}
+
+        {/* Request Custom Project Section */}
+        <div className="custom-project-section">
+          <div className="custom-project-content">
+            <div className="custom-project-info">
+              <h2>Need Something Unique?</h2>
+              <p>Can't find exactly what you're looking for? Let us build a custom hardware solution tailored to your specific requirements.</p>
+              <div className="features-list">
+                <div className="feature-item">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>Tailored Solutions</span>
+                </div>
+                <div className="feature-item">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>Complete Documentation</span>
+                </div>
+                <div className="feature-item">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>24/7 Support</span>
+                </div>
+                <div className="feature-item">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>Fast Delivery</span>
+                </div>
+              </div>
+            </div>
+            <div className="custom-project-action">
+              <button 
+                className="request-custom-btn"
+                onClick={handleRequestCustomProject}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+                Request Custom Project
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7,7 17,7 17,17"></polyline>
+                </svg>
+              </button>
+              <p className="custom-project-subtitle">Get a personalized quote in 24 hours</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

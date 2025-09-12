@@ -44,8 +44,8 @@ const ProjectDetail = () => {
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Redux'],
       github: '#',
       demo: '#',
-      price: '₹12k',
-      numericPrice: 12000,
+      price: '₹3999',
+      numericPrice: 3999,
       features: [
         'Complete shopping cart functionality',
         'User authentication and authorization',
@@ -77,8 +77,8 @@ const ProjectDetail = () => {
       tags: ['Vue.js', 'Firebase', 'Real-time', 'PWA'],
       github: '#',
       demo: '#',
-      price: '₹7,000',
-      numericPrice: 7000,
+      price: '₹4999',
+      numericPrice: 4999,
       features: [
         'Real-time task synchronization',
         'Team collaboration tools',
@@ -176,8 +176,8 @@ const ProjectDetail = () => {
       tags: ['Python', 'Django', 'Data Analysis', 'Charts', 'PostgreSQL'],
       github: '#',
       demo: '#',
-      price: '₹10k',
-      numericPrice: 10000,
+      price: '₹4999',
+      numericPrice: 4999,
       features: [
         'Multi-platform social media integration',
         'Real-time analytics dashboard',
@@ -209,8 +209,8 @@ const ProjectDetail = () => {
       tags: ['React Native', 'SQLite', 'Health API', 'Charts'],
       github: '#',
       demo: '#',
-      price: '₹8,000',
-      numericPrice: 8000,
+      price: '₹7999',
+      numericPrice: 7999,
       features: [
         'Workout tracking and logging',
         'Custom exercise routines',
